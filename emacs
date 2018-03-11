@@ -46,6 +46,7 @@
 (global-set-key (kbd "C-c l") 'evilnc-quick-comment-or-uncomment-to-the-line)
 (global-set-key (kbd "C-c c") 'evilnc-copy-and-comment-lines)
 (global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs)
+(evilem-default-keybindings "SPC")
 
 (add-to-list 'load-path
               "~/.emacs.d/plugins/yasnippet")
@@ -103,3 +104,8 @@
 (add-hook 'before-save-hook 'tide-format-before-save)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(add-hook 'after-init-hook 'my-after-init-hook)
+(defun my-after-init-hook ()
+  (require 'edts-start))
+(add-to-list 'company-backends 'company-elm)

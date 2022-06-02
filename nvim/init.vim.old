@@ -1,0 +1,305 @@
+filetype plugin on
+set encoding=UTF-8
+let g:python3_host_prog=expand('~/.pyenv/versions/3.10.4/bin/python')
+" Plugins will be downloaded under the specified directory.
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'tpope/vim-sensible'
+Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'jiangmiao/auto-pairs'
+Plug 'sbdchd/neoformat'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tmhedberg/SimpylFold'
+Plug 'mattn/emmet-vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'savq/melange'
+Plug 'Shatur/neovim-ayu'
+Plug 'folke/tokyonight.nvim'
+Plug 'jacoborus/tender.vim'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'folke/lsp-colors.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'nvim-orgmode/orgmode'
+Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'feline-nvim/feline.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ms-jpq/coq_nvim'
+Plug 'ms-jpq/coq.artifacts'
+Plug 'ms-jpq/coq.thirdparty'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+let mapleader = ","
+
+set number
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+
+nnoremap <F3> :NvimTreeToggle<CR>
+nnoremap <F4> :NvimTreeFocus<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+
+map <F5> :bprevious<cr>
+map <F6> :bNext<CR>
+
+" Use fontawesome icons as signs
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+" Update sign column every quarter second
+set updatetime=250
+" Jump between hunks
+nmap <Leader>gn <Plug>GitGutterNextHunk  " git next
+nmap <Leader>gp <Plug>GitGutterPrevHunk  " git previous
+" Hunk-add and hunk-revert for chunk staging
+nmap <Leader>ga <Plug>GitGutterStageHunk  " git add (chunk)
+nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
+" Open vimagit pane
+nnoremap <leader>gs :Magit<CR>       " git status
+" Push to remote
+nnoremap <leader>gP :! git push<CR>  " git Push
+
+" Show commits for every source line
+nnoremap <Leader>gb :Gblame<CR>  " git blame
+
+" Open current line in the browser
+nnoremap <Leader>gb :.Gbrowse<CR>
+
+" Open visual selection in the browser
+vnoremap <Leader>gb :Gbrowse<CR>
+
+" Add the entire file to the staging area
+nnoremap <Leader>gaf :Gw<CR>      " git add file
+
+" Enable deletion of untracked files in Magit
+let g:magit_discard_untracked_do_delete=1
+
+let g:deoplete#enable_at_startup = 1
+
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+
+" Enable tab to space conversion
+let g:neoformat_basic_format_retab = 1
+
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
+
+let g:neomake_python_enabled_makers = ['pylint']
+
+" disable autocompletion, because we use deoplete for completion
+let g:jedi#completions_enabled = 0
+
+" open the go-to function in split, not another buffer
+let g:jedi#use_splits_not_buffers = "right"
+
+au BufNewFile,BufRead *.ejs set filetype=html
+"autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+
+"Uncomment to override defaults:
+"let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+"let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_mermaid = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+"let g:instant_markdown_port = 8888
+let g:instant_markdown_python = 1
+
+set termguicolors
+colorscheme nightfox
+
+lua <<EOF
+  local lspconfig = require("lspconfig")
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+  -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+  local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'cssls' }
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+      -- on_attach = my_custom_on_attach,
+      capabilities = capabilities,
+    }
+  end
+
+  -- luasnip setup
+  local luasnip = require 'luasnip'
+
+  require("nvim-lsp-installer").setup({
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+           }
+        }
+    })
+
+
+  -- nvim-cmp setup
+  local cmp = require 'cmp'
+  cmp.setup {
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end,
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<CR>'] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      },
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+    }),
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+    },
+  }
+
+  -- Automatically start coq
+  vim.g.coq_settings = { auto_start = true }
+
+  -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+  local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
+      -- on_attach = my_custom_on_attach,
+    }))
+  end
+
+  local buf_map = function(bufnr, mode, lhs, rhs, opts)
+    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
+        silent = true,
+    })
+  end
+  lspconfig.tsserver.setup({
+    on_attach = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup({})
+    ts_utils.setup_client(client)
+    buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
+    buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
+    buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
+    on_attach(client, bufnr)
+  end,
+  })
+  require'nvim-tree'.setup {
+  }
+  lspconfig.ansiblels.setup{}
+  lspconfig.angularls.setup{}
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  lspconfig.html.setup {
+    capabilities = capabilities,
+  }
+  lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  }
+  lspconfig.emmet_ls.setup{}
+  lspconfig.bashls.setup{}
+  lspconfig.tsserver.setup{}
+  lspconfig.eslint.setup {}
+  lspconfig.jedi_language_server.setup{}
+  lspconfig.cssls.setup{}
+  require('feline').setup()
+  require('gitsigns').setup()
+  lspconfig.kotlin_language_server.setup{}
+  require'nvim-treesitter.configs'.setup{
+    ensure_installed = "all",
+    sync_install = false,
+    ignore_install = { "" },
+    highlight = {
+	enable = true,
+	disable = { "" },
+	additional_vim_regex_highlighting = true,
+    },
+  indent = { enable = true, disable = { "yaml" } },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+  }
+
+EOF
+

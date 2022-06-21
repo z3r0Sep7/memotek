@@ -1,4 +1,4 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+-- This file can be loaded bysvermeulen/vim-cutlass calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
@@ -9,9 +9,14 @@ return require('packer').startup(function()
   use {
     "williamboman/nvim-lsp-installer",
     'neovim/nvim-lspconfig', -- Collection of configurations for the built-in LSP client
-    -- 'lspsaga.nvim',
   }
-
+  
+  use {
+    'vijaymarupudi/nvim-fzf',
+    'vijaymarupudi/nvim-fzf-commands',
+    'ibhagwan/fzf-lua',
+  }
+  
   -- lualine
   use {
     'nvim-lualine/lualine.nvim',
@@ -35,6 +40,8 @@ return require('packer').startup(function()
       }
     end
   }
+
+  use 'glepnir/lspsaga.nvim'
 
   use 'simrat39/rust-tools.nvim'
   use 'mfussenegger/nvim-dap'
@@ -67,7 +74,6 @@ return require('packer').startup(function()
     }
   }
 
-
   use 'mattn/emmet-vim'
   use 'tpope/vim-sensible'
   use 'scrooloose/nerdcommenter'
@@ -75,8 +81,13 @@ return require('packer').startup(function()
   use 'terryma/vim-multiple-cursors'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
+  use 'cedarbaum/fugitive-azure-devops.vim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use 'tpope/vim-unimpaired'
+  
+  use 'svermeulen/vim-yoink'
+  use 'svermeulen/vim-cutlass'
   
   -- completion
   use 'hrsh7th/nvim-cmp'

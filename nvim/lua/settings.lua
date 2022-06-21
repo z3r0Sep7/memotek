@@ -31,7 +31,8 @@ vim.o.eol = false -- show if there's no eol char
 vim.o.showbreak= '↪' -- character to show when line is broken
 
 -- Sidebar
-vim.o.number = true -- line number on the left
+--vim.o.number = true -- line number on the left
+vim.o.relativenumber = true
 vim.o.numberwidth = 3 -- always reserve 3 spaces for line number
 vim.o.signcolumn = 'yes' -- keep 1 column for coc.vim  check
 vim.o.modelines = 0
@@ -89,3 +90,4 @@ vim.cmd('colorscheme ayu-dark')
 --vim.g.material_style = "palenight"
 
 vim.g.python3_host_prog = '~/.pyenv/versions/3.10.4/bin/python'
+vim.g.yoinkIncludeDeleteOperations = 1

@@ -74,8 +74,17 @@ lspconfig.tsserver.setup{}
 lspconfig.eslint.setup {}
 lspconfig.jedi_language_server.setup{}
 lspconfig.cssls.setup{}
+lspconfig.rome.setup{}
 
 lspconfig.kotlin_language_server.setup{}
+lspconfig.remark_ls.setup{}
+
+lspconfig.vimls.setup{}
+lspconfig.yamlls.setup{}
+
+--local saga = require 'lspsaga'
+
+--saga.init_lsp_saga()
 
 require'nvim-treesitter.configs'.setup{
   ensure_installed = "all",

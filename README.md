@@ -1,2 +1,2 @@
 # memotek
-Site Memotek
+*Various config files for unix and nvim
